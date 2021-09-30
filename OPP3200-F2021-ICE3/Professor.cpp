@@ -46,7 +46,7 @@ void Professor::SetEmployeeID(const std::string& value)
  */
 void Professor::Teaches() const
 {
-    std::cout << GetFirstName << " is Teaching!" << std::endl;
+    std::cout << GetFirstName() << " is Teaching!" << std::endl;
 }
 
 /**
