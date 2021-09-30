@@ -7,6 +7,9 @@
 
 #include "Person.h"
 
+#include <iostream>
+
+
 /**
  * Person implementation
  */
@@ -17,62 +20,80 @@
  * @param lastName
  * @param age
  */
-void Person::Person(string firstName, string lastName, float age) {
+Person::Person(std::string firstName, std::string lastName, const float age)
+	: m_age(age), m_firstName(std::move(firstName)), m_lastName(std::move(lastName))
+{
 
 }
 
 /**
  * @return float
  */
-float Person::GetAge() {
-    return 0.0;
+float Person::GetAge() const
+{
+    return m_age;
 }
 
 /**
  * @param value
  */
-void Person::SetAge(float value) {
-
+void Person::SetAge(const float value)
+{
+    m_age = value;
 }
 
 /**
- * @return string
+ * @return std::string
  */
-string Person::GetFirstName() {
-    return "";
-}
-
-/**
- * @param value
- */
-void Person::SetFirstName(string value) {
-
-}
-
-/**
- * @return string
- */
-string Person::GetLastName() {
-    return "";
+std::string Person::GetFirstName() const
+{
+    return m_firstName;
 }
 
 /**
  * @param value
  */
-void Person::SetLastName(string value) {
+void Person::SetFirstName(const std::string& value)
+{
+    m_firstName = value;
+}
 
+/**
+ * @return std::string
+ */
+std::string Person::GetLastName() const
+{
+    return m_lastName;
+}
+
+/**
+ * @param value
+ */
+void Person::SetLastName(const std::string& value)
+{
+    m_lastName = value;
 }
 
 /**
  * @return void
  */
-void Person::SaysHello() {
-    return;
+void Person::SaysHello() const
+{
+    std::cout << GetFirstName() << " says Hello!" << std::endl;
 }
 
 /**
- * @return string
+ * @return std::string
  */
-string Person::ToString() {
-    return "";
+std::string Person::ToString()
+{
+    std::string outputString;
+
+    outputString += "------------------------------------------------\n";
+    outputString += "First Name: " + GetFirstName() + "\n";
+    outputString += "Last Name : " + GetLastName() + "\n";
+    outputString += "Age       : " + std::to_string(GetAge()) + "\n";
+    outputString += "------------------------------------------------\n\n";
+
+    return outputString;
 }

@@ -4,9 +4,10 @@
  * @version 1.0
  */
 
-
+#pragma once
 #ifndef _PERSON_H
 #define _PERSON_H
+#include <string>
 
 class Person {
 public: 
@@ -16,36 +17,37 @@ public:
  * @param lastName
  * @param age
  */
-void Person(string firstName, string lastName, float age);
+Person(std::string firstName, std::string lastName, float age);
     
-float GetAge();
+float GetAge() const;
     
 /**
  * @param value
  */
 void SetAge(float value);
     
-string GetFirstName();
+std::string GetFirstName() const;
     
 /**
  * @param value
  */
-void SetFirstName(string value);
+void SetFirstName(const std::string& value);
     
-string GetLastName();
+std::string GetLastName() const;
     
 /**
  * @param value
  */
-void SetLastName(string value);
+void SetLastName(const std::string& value);
     
-void SaysHello();
+void SaysHello() const;
     
-string ToString();
+virtual std::string ToString();
+
 private: 
     float m_age;
-    string m_firstName;
-    string m_lastName;
+    std::string m_firstName;
+    std::string m_lastName;
 };
 
 #endif //_PERSON_H
