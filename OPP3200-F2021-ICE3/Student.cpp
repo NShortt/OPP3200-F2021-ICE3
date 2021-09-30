@@ -7,6 +7,8 @@
 
 #include "Student.h"
 
+#include <iostream>
+
 /**
  * Student implementation
  */
@@ -18,34 +20,47 @@
  * @param age
  * @param studentID
  */
-void Student::Student(string firstName, string lastName, float age, string studentID) {
+Student::Student(const std::string& firstName, const std::string& lastName, const float age, std::string studentID)
+	: Person(firstName, lastName, age), m_studentID(std::move(studentID))
+{
 
 }
 
 /**
- * @return string
+ * @return std::string
  */
-string Student::GetStudentID() {
-    return "";
+std::string Student::GetStudentID() const
+{
+    return m_studentID;
 }
 
 /**
  * @param value
  */
-void Student::SetStudentID(string value) {
-
+void Student::SetStudentID(const std::string& value)
+{
+    m_studentID = value;
 }
 
 /**
  * @return void
  */
-void Student::Studies() {
-    return;
+void Student::Studies() const
+{
+    std::cout << GetFirstName() << " is Studying!" << std::endl;
 }
 
 /**
- * @return string
+ * @return std::string
  */
-string Student::ToString() {
-    return "";
+std::string Student::ToString()
+{
+    std::string outputString;
+
+    outputString += Person::ToString();
+    outputString += "------------------------------------------------\n";
+    outputString += "Student ID: " + GetStudentID() + "\n";
+    outputString += "------------------------------------------------\n";
+
+    return outputString;
 }
